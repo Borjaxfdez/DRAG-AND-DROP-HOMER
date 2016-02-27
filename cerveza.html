@@ -1,0 +1,148 @@
+<html>
+<head><title>CV</title>
+<script src="jq.js"></script>
+<style>
+@font-face { 
+		font-family: 's1';
+		src: url('Simpsonfont.ttf');
+    }
+	body{
+		font-family: 's1';
+	}
+#i1,#div,#nivel,#v,#b{
+	float:left;
+}
+</style>
+<script>
+var lo=0;
+$(document).ready(function() {
+	$("#ini1").fadeIn();
+	$("#ini2").fadeIn();
+	$("#ini3").fadeIn();
+	$("#1").hide();
+	$("#fr").hide();
+	$("#div").hide();
+	$("#nivel").hide();
+	$("#p").css("display","none");
+	$("#b").hide();
+	$("#v").hide();
+});
+function preparado(){
+	$("#ini1").hide();
+	$("#ini2").hide();
+	$("#ini3").hide();
+	$("#1").fadeIn(1000);
+	$("#fr").fadeIn(1000);
+	$("#div").fadeIn(1000);
+	$("#nivel").fadeIn(1000);
+	$("#p").fadeIn(1000);
+	$("#b").fadeIn(1000);
+	$("#v").fadeIn(1000);
+}
+var c=0;
+var w=0;
+var lata="rsz_duff.png"; 
+var p=0;
+setInterval(function(){
+	if(c>0){
+	c--;
+	p-=12;
+	}
+	if(c<3){
+	document.getElementById("f").src="homer.gif";
+	document.getElementById("nivel").src="ter1.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="NORMAL";
+	}
+    if(c==3 || c==4 || c==5){
+	document.getElementById("f").src="homer2.gif";
+	document.getElementById("nivel").src="ter2.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="CONTENTILLO";
+    }
+  if(c==6 || c==7 || c==8){
+	document.getElementById("f").src="homersofa.jpg";
+	document.getElementById("nivel").src="ter3.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="BORRACHO";
+  }
+  if(c>8){
+	document.getElementById("f").src="homerbor.jpg";
+	document.getElementById("nivel").src="ter4.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="CASI MUERTO";
+  }
+ }, 4000);
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function drag(ev) {
+	var img = new Image(); 
+	img.src="rsz_duff.png"; 
+	ev.dataTransfer.setDragImage(img, 100, 100);
+    ev.dataTransfer.setData("Text", ev.target.id);
+    }
+function drop(ev) {
+    ev.preventDefault();
+	var data = ev.dataTransfer.getData("text");
+	contarCervezas();
+	}
+	function cambiar(){
+		document.getElementById("i1").src="nevera.jpg";
+	}
+	function cambiar2(){
+		document.getElementById("i1").src="nevera2.jpg";
+	}
+	function contarCervezas(){
+		c++;
+		w+=100;
+		p+=12;
+  if(c<3){
+	document.getElementById("f").src="homer.gif";
+	document.getElementById("nivel").src="ter1.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="NORMAL";
+	}
+    if(c==3 || c==4 || c==5){
+	document.getElementById("f").src="homer2.gif";
+	document.getElementById("nivel").src="ter2.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="CONTENTILLO";
+    }
+  if(c==6 || c==7 || c==8){
+	document.getElementById("f").src="homersofa.jpg";
+	document.getElementById("nivel").src="ter3.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="BORRACHO";
+  }
+  if(c>8){
+	document.getElementById("f").src="homerbor.jpg";
+	document.getElementById("nivel").src="ter4.png";
+	document.getElementById("p").value=p;
+	document.getElementById("b").innerHTML="CASI MUERTO";
+  }
+	}
+	function dragini(ev) {
+	var img = new Image(); 
+	img.src="rsz_duff.png"; 
+	ev.dataTransfer.setDragImage(img, 100, 100);
+    ev.dataTransfer.setData("Text", ev.target.id);
+    }
+function dropini(ev) {
+    ev.preventDefault();
+	var data = ev.dataTransfer.getData("text");
+	preparado();
+	}
+</script>
+</head>
+<body>
+<div id="fr">VES AL FRIGORIFICO QUE SIGUE CON SED!!!<br>CADA CIERTO TIEMPO AUMENTAN SUS GANAS DE SEGUIR BEBIENDO!!!</div>
+<div id="1"><img draggable="true" id="i1" ondragstart="drag(event)" width="400px" height="500px" src="nevera2.jpg" onmouseout="javascript:cambiar2();" onmouseover="javascript:cambiar();"></div>
+<div id="div" style="display:table-cell;border: 1px solid green" height=500 width=500 ondrop='drop(event)' ondragover='allowDrop(event)'><img height="300px" width="500px" id="f" src="homer.gif"></div>
+<img id="nivel" src="ter1.png" width="400px" height="500px"><progress id="p" max="100" value="0"></progress><br>
+<div id="v">HOMER VA&nbsp;</div><div id="b">NORMAL</div>
+<div id="ini1">HOMER TIENE SED, <br>&#191;POR QU&#201; NO DARLE UNA CERVEZA?</div>
+<img id="ini2"src="rsz_duff.png" ondragstart="dragini(event)">
+<img id="ini3" src="sed.gif" ondrop='dropini(event)' ondragover='allowDrop(event)'>
+</body>
+</html>
